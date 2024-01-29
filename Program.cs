@@ -33,3 +33,71 @@
 
 // Решение:
 
+Console.Clear();
+Console.WriteLine("Выберите вариант массива:");
+Console.WriteLine("1. [“Hello”, “2”, “world”, “:-)”]");
+Console.WriteLine("2. [“1234”, “1567”, “-2”, “computer science”]");
+Console.WriteLine("3. [“Russia”, “Denmark”, “Kazan”]");
+Console.WriteLine("4. Ввести массив самостоятельно");
+
+string[] array;
+
+switch (Console.ReadLine())
+{
+    case "1":
+        array = new string[] { "Hello", "2", "world", ":-)" };
+        break;
+    case "2":
+        array = new string[] { "1234", "1567", "-2", "computer science" };
+        break;
+    case "3":
+        array = new string[] { "Russia", "Denmark", "Kazan" };
+        break;
+    case "4":
+        Console.WriteLine("Введите элементы массива, разделяя их пробелом:");
+        array = Console.ReadLine()!.Split(' ');
+        break;
+    default:
+        Console.WriteLine("Неизвестный выбор. Используем первый массив по умолчанию.");
+        array = new string[] { "Hello", "2", "world", ":-)" };
+        break;
+}
+
+string[] resultArray = FilterArray(array);
+
+Console.WriteLine("Результат:");
+Console.Write("[");
+foreach (string s in resultArray)
+{
+    Console.Write(" "+s+" ");
+}
+Console.Write("]");
+
+static string[] FilterArray(string[] array)
+{
+    int count = 0;
+
+    // Подсчитываем количество элементов, которые удовлетворяют условию
+    for (int i = 0; i < array.Length; i++)
+    {
+        if (array[i].Length <= 3)
+        {
+            count++;
+        }
+    }
+
+    string[] result = new string[count];
+    int index = 0;
+
+    // Заполняем результирующий массив
+    for (int i = 0; i < array.Length; i++)
+    {
+        if (array[i].Length <= 3)
+        {
+            result[index] = array[i];
+            index++;
+        }
+    }
+
+    return result;
+}
