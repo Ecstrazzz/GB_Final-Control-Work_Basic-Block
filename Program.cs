@@ -65,13 +65,8 @@ switch (Console.ReadLine())
 
 string[] resultArray = FilterArray(array);
 
-Console.WriteLine("Результат:");
-Console.Write("[");
-foreach (string s in resultArray)
-{
-    Console.Write(" "+s+" ");
-}
-Console.Write("]");
+if (resultArray.Length != 0) Console.WriteLine("Результат: ['" + string.Join("', '", resultArray) + "']");
+else Console.WriteLine("Результат: Ни один из элементов массива не подходит под условие задачи!");
 
 static string[] FilterArray(string[] array)
 {
